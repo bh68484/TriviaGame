@@ -1,60 +1,65 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>North Carolina Trivia Game</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Linking to jQuery -->
-    <script src="https://code.jquery.com/jquery-3.3.1.min.js"
-  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-  crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
     <!-- Links to css sheets -->
     <link rel="stylesheet" type="text/css" media="screen" href="assets/css/style.css" />
     <!-- Linking to Bootstrap -->
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 </head>
+
 <body>
-    <div class="jumbotron">
-        <h1 class="display-3">North Carolina Trivia</h1>
-        <img src="assets/images/ncBanner.jpg" class="img-fluid" alt="Responsive image">
-        <p class="lead">Click the start button to start the quiz.  Choose your answer quickly because the clock is ticking!</p>
-          <div id=start>
-          <button type="button" class="btn btn-success btn-lg" id="play">Success</button>
+    <div class="container-fluid">
+        <div class="jumbotron">
+            <h1 class="display-3 text-center">North Carolina Trivia</h1>
+            <div class="text-center"><img src="assets/images/ncBanner.jpg" class="img-fluid" alt="ncJumbotronImage">
+                <p class="lead">Click the start button to start the quiz. Choose your answer quickly because the clock is ticking!</p>
+                <div id="start">
+                    <button type="button" class="btn btn-success btn-lg" id="play">Start</button>
+                </div>
+            </div>
+
         </div>
-        </p>
     </div>
-    <div class="row" id="questions">
-        questions will be called into here
+
+    <div>
+        <div class="row text-center" id="countdown">
+            <h3>10</h3></div>
+        <div class="row text-center" id="questions"></div>
+        <div class="row">
+            <div class="col-md-6 text-center">
+
+                <button type="button" class="btn btn-primary answerChoices" id="0"></button>
+            </div>
+            <div class="col-md-6 text-center">
+                <button type="button" class="btn btn-primary answerChoices" id="1"></button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 text-center">
+                <button type="button" class="btn btn-primary answerChoices" id="2"></button>
+            </div>
+            <div class="col-md-6 text-center">
+                <button type="button" class="btn btn-primary answerChoices" id="3"></button>
+            </div>
+        </div>
+        <div class="row text-center" id="results">
+            <h1>RESULTS</h1>
+            <p>Correct: <span id=correct>0</span></p>
+            <p>Incorrect: <span id=incorrect>0</span></p>
+            <button type="button" class="btn btn-primary" id="restart">Play Again?</button>
+        </div>
     </div>
-    <div class="row">
-        <div class="col-md-6">
-            <button type="button" class="btn btn-primary answerChoices" id="0"></button>
-        </div>
-        <div class="col-md-6">
-            <button type="button" class="btn btn-primary answerChoices" id="1"></button>
-        </div>
 
     </div>
-    <div class="row">
-        <div class="col-md-6">
-          <button type="button" class="btn btn-primary answerChoices" id="2"></button>
-        </div>
-        <div class="col-md-6">
-    <button type="button" class="btn btn-primary answerChoices" id="3"></button>
-        </div>
-    </div>
-    <div class="row">
-        results will go in here
-    </div>
-    
-                
-                
-                
-      
 
-
-
-<script src="assets/javascript/app.js"></script>
+    <script src="assets/javascript/app.js"></script>
 </body>
+
 </html>
