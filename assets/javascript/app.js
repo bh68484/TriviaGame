@@ -4,8 +4,7 @@ $(document).ready(function() {
     var right = 0;
     var wrong = 0;
     var questionIndex = 0;
-    var counter = 20;
-    var Clock;
+    var clock;
 
 
     //Array with wrong images
@@ -71,19 +70,19 @@ $(document).ready(function() {
             $("#1").text(questions[questionIndex].choices[1]);
             $("#2").text(questions[questionIndex].choices[2]);
             $("#3").text(questions[questionIndex].choices[3]);
-        } else if (counter === 0) {
-            $("#quiz, #timer").hide("slow");
-            $("#results").show("slow");
-            scoreCount();
+            countdownClock();
         } else {
-            $("#quiz, #timer").hide("slow");
+            $("#questions").hide();
+            $("#countdown").hide();
             $("#results").show("slow");
+            $("#0, #1, #2, #3").hide();
             scoreCount();
         }
     };
 
     //Checks multiple choice buttons if right or wrong - adds either to right or wrong counter.
     $(".answerChoices").click(function() {
+        clearInterval(clock);
         userGuess = $(this).attr("id");
         //check for correct answer
         if (userGuess == questions[questionIndex].answer) {
@@ -94,10 +93,20 @@ $(document).ready(function() {
             incorrect = wrong++;
             console.log(incorrect + " incorrect");
             questions[questionIndex].answer
+
         }
         questionIndex++;
         loadQuestion();
+
     });
+
+    function timeoutLoss() {
+        incorrect = wrong++;
+        questionIndex++
+        loadQuestion();
+    }
+
+
 
     //Function to show the number of right and wrong answers after the end of the game.
     function scoreCount() {
@@ -114,24 +123,9 @@ $(document).ready(function() {
         $("#start").hide("slow");
         $("#quiz").show("slow");
         loadQuestion();
-        countdownClock();
 
 
-        //Sets up timer to show 30 seconds on the clock.
-        function countdownClock() {
-            Clock = setInterval(thirtySeconds, 1000);
 
-            function thirtySeconds() {
-                if (counter === 0) {
-                    clearInterval(Clock);
-
-                }
-                if (counter > 0) {
-                    counter--;
-                }
-                $("#countdown").html(counter);
-            }
-        }
 
         //Restart button shown at the end of the game - allows user to click and restart the game over.
         $("#restart").click(function() {
@@ -140,4 +134,24 @@ $(document).ready(function() {
 
 
     })
+    //Sets up timer to show 10 seconds on the clock.
+    function countdownClock() {
+        var counter = 11;
+        clock = setInterval(tenSeconds, 1000);
+
+        function tenSeconds() {
+            if (counter === 0) {
+                timeoutLoss();
+                clearInterval(clock);
+                counter = 11;
+                countdownClock();
+            }
+            if (counter > 0) {
+
+                counter--;
+            }
+
+            $("#countdown").html(counter);
+        }
+    }
 })
